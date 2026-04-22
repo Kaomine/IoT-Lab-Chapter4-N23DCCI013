@@ -1,8 +1,8 @@
+from time import sleep
+from sensor_sim import SimUltrasonic, SimPotentiometer
+import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Agg')  # Bắt buộc cho QEMU headless
-import matplotlib.pyplot as plt
-from sensor_sim import SimUltrasonic, SimPotentiometer
-from time import sleep
 
 
 # Khởi tạo cảm biến
@@ -31,12 +31,13 @@ ax.plot(x, distances, 'b-', linewidth=1.5, label='Khoảng cách (cm)')
 
 
 # Đường ngưỡng span (đỏ, nét đứt)
-ax.axhline(y=span, color='r', linestyle='--', linewidth=2, label=f'Span = {span:.0f} cm')
+ax.axhline(y=span, color='r', linestyle='--',
+           linewidth=2, label=f'Span = {span:.0f} cm')
 
 
 # Tô vùng Span (distance < span)
 ax.fill_between(x, 0, [min(d, span) for d in distances],
-                 alpha=0.2, color='red', label='Vùng Span!')
+                alpha=0.2, color='red', label='Vùng Span!')
 
 
 # Nhãn trục + tiêu đề
